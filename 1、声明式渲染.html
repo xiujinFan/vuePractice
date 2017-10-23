@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>勿忘初心，方得始终</title>
+</head>
+<body>
+<div  id="app">
+  {{msg}}
+  <!--动态绑定DOM属性用v-bind:title，可以简写成 :title -->
+  <p :title="tip">鼠标悬停</p>
+</div>
+<script src="js/vue.js"></script>
+<script>
+  var app=new Vue({
+      el:"#app",
+      data:{  //存数据
+        msg:"哈哈",
+        tip:'提示'
+
+    }
+  })
+</script>
+</body>
+</html>

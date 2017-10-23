@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>勿忘初心，方得始终</title>
+</head>
+<body>
+<div id="app">
+    <!--绑定事件用"v-on:事件名"，简写  @事件名 -->
+    <button type="button" @click="bok=!bok">点击显示和隐藏</button>
+   <h1 v-if="bok">你能看到我</h1>
+    <h1>你爱吃什么水果？</h1>
+    <ul>
+        <li v-for="key in fruits">{{key}}</li>
+    </ul>
+    <ul>
+        <li v-for="(key,index) in fruits">{{key}}{{index}}</li>
+    </ul>
+    <ul>
+        <li v-for="(key,index) in balls">{{key.name}}{{index}}</li>
+    </ul>
+</div>
+<script src="js/vue.js"></script>
+<script>
+    var app=new Vue({
+        el:"#app",
+        data:{
+            bok:true,
+            fruits:['西瓜','荔枝'],
+            balls:[
+                {name:"篮球"},
+                {name:"足球"},
+                {name:"乒乓球"}
+            ]
+        }
+    })
+</script>
+</body>
+</html>

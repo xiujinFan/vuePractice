@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue 生命周期</title>
+    <script src="js/vue.js"></script>
+    <script src="../node_modules/axios/dist/axios.min.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" v-cloak>
+        <input type="text" v-model="msg">
+        {{msg}}
+    </div>
+    <script type="text/javascript">
+//        var Profile = Vue.extend({
+//            template:`<p>{{name}} {{age}} {{like}}</p>`,
+//            data:function () {
+//                return {
+//                    name: "gaoyang",
+//                    age : "28",
+//                    like: "vue"
+//                }
+//
+//            }
+//
+//        })
+//        new Profile().$mount("#box");
+
+        var vm = new Vue({
+            el: "#box",
+            data: {
+                msg: "well"
+            },
+            beforeCreate: function () {
+                alert( this.msg + "实例被创建之前")
+            },
+
+            created: function () {
+                alert( this.msg + "实例被创建之后")
+            },
+
+            beforeMount: function () {
+                alert( this.msg + "实例挂载开始之前被调用")
+            },
+
+            mounted: function () {
+                alert( this.msg + "挂载到实例上去")
+            },
+
+            beforeUpdate: function () {
+                alert( this.msg + "数据更新之前")
+            },
+
+            updated: function () {
+                alert( this.msg + "数据更新之后")
+            },
+
+            beforeDestroy: function () {
+                alert( this.msg + "实例被销毁之前")
+            },
+
+            destroyed: function () {
+                alert( this.msg + "实例被销毁之后")
+            },
+
+            ready: function () {
+                alert( this.msg + "插入到文档中")
+            },
+
+            methods: {
+
+            }
+        });
+
+    </script>
+</body>
+</html>

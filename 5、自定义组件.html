@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>勿忘初心 方得始终</title>
+</head>
+<body>
+<div id="app">
+    <!--直接使用自定义组件-->
+    <ul>
+        <list v-for="item in ary" :todoa="item"></list>
+    </ul>
+    <ul>
+        <list  :todo="msg"></list>
+    </ul>
+</div>
+<script src="js/vue.js"></script>
+<script>
+    //注册一个组件
+    Vue.component("list",{
+        props:['todo','todoa'],
+        template:"<li>{{todoa.fruit}}</li>"
+    });
+    var app=new Vue({
+        el:"#app",
+        data:{
+            msg:"你是小王",
+            ary:[{
+                "fruit":['香蕉','西瓜','橘子']
+
+            },{
+
+                "fruit":['芹菜','豆角','茄子']
+            }]
+        }
+    })
+</script>
+</body>
+</html>

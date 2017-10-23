@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>勿忘初心，方得始终</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <parent></parent>
+</div>
+<template id="parent">
+    <div>
+        <h1>我是父组件{{msg}}</h1>
+        <children :n="msg"></children>
+    </div>
+</template>
+<template id="children">
+    <h2 @click="change">我是子组件{{msg}}</h2>
+</template>
+<script>
+var app=new Vue({
+    el:"#app",
+    components:{
+        parent:{
+            template:"#parent",
+            data(){
+                return {msg:"hahha"}
+            },
+            components:{
+                children:{
+                    props:['n'],
+                    template:"#children",
+                    data(){
+                        return {msg:this.n}
+                    },
+                    methods:{
+                        change(){
+                            this.msg="xixixi"
+                        }
+                    }
+                }
+            }
+        }
+    }
+})
+</script>
+</body>
+</html>

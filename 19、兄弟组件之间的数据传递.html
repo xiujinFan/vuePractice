@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <tmp1></tmp1>
+    <tmp2></tmp2>
+</div>
+<template id="temp1">
+    <h1>111111{{msg}}</h1>
+</template>
+<template id="temp2">
+    <h2 @click="setData">2222222{{msg}}</h2>
+</template>
+<script>
+    var Event=new Vue; //event.$emit  event.$on
+    var app=new Vue({
+        el:"#app",
+        components:{
+            tmp1:{
+                template:"#temp1",
+                data(){
+                    return {msg:""}
+                },
+                mounted(){
+                    //页面一加载进来的时候就绑定好了
+                    Event.$on('fan',(data)=>{
+                        //alert(data)
+                        this.msg=data;
+                    })
+                }
+            },
+            tmp2:{
+                template:"#temp2",
+                data(){
+                    return {msg:'hello'}
+                },
+                methods:{
+                    setData(){
+                        //发布数据
+                        Event.$emit('fan',this.msg)
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

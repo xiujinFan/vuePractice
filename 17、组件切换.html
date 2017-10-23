@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>勿忘初心，方得始终</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="comp='temp1'">显示组件1</button>
+    <button @click="comp='temp2'">显示组件2</button>
+    <component :is="comp"></component>
+    <!--component 是核心  必须写 通过is觉得显示哪个组件-->
+</div>
+<script>
+    var app=new  Vue({
+        el:"#app",
+        data:{
+            comp:'temp1'
+        },
+        components:{
+            temp1:{
+                template:"<h1>1</h1>"
+            },
+            temp2:{
+                template:"<h2>2</h2>"
+            }
+        }
+    })
+</script>
+</body>
+</html>

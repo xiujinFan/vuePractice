@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>勿忘初心，方得始终</title>
+</head>
+<body>
+<div id="app">
+    <hello n="name" :n="name"></hello><!--加“：”  动态属性-->
+</div>
+<div id="app2">
+    <hello ></hello>
+</div>
+<script src="js/vue.js"></script>
+<script>
+    //注册组件-公用组件
+    Vue.component('hello',{
+        props:['n'],
+        template:'<h1>{{msg}}{{n}}</h1>',
+        data(){ //data函数中放的就是组件自己的数据
+            return{msg:'hello'}
+        }
+    });
+    // 一个实例
+    var app=new Vue({
+        el:'#app',
+        data:{
+            name:"fan"
+        }
+    });
+    // 一个实例
+    var app=new Vue({
+        el:'#app2'
+    });
+</script>
+</body>
+</html>

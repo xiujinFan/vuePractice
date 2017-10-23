@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>勿忘初心，方得始终</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" @keydown.enter="fn">
+    <!--entet  tab  delete  esc ... -->
+</div>
+<script>
+    var app=new Vue({
+        el:"#app",
+        methods:{
+            fn(){
+                alert("按下enter键")
+            }
+        }
+    })
+</script>
+</body>
+</html>

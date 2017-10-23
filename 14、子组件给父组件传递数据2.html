@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子组件给父组件传递数据</title>
+</head>
+<body>
+<div id="parent">
+    <user-profile v-ref:profile></user-profile>
+</div>
+
+<script>
+    Vue.component('user-profile', {
+        template: '<span>{{ msg }}</span>',
+        data: function () {
+            return {msg: 123};
+        },
+        methods: {
+            greet: function () {
+                console.log('hhhhh');
+            }
+        }
+
+    })
+    var parent = new Vue({el: '#parent'});
+    var child = parent.$refs.profile;
+    child.greet();
+</script>
+</body>
+</html>

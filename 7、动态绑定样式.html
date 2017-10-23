@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>勿忘初心，方得始终</title>
+    <script src="js/vue.js"></script>
+    <style>
+        .bg1{background: red}
+        .bg2{color: yellow}
+    </style>
+</head>
+<body>
+<div id="app">
+    <button @click="bok=!bok">切</button>
+    <h1 :class="{bg1:bok,bg2:bok}">{{msg}}</h1>
+    <h2 :class="obj">变变变</h2>
+</div>
+<script>
+    var app=new Vue({
+        el:"#app",
+       data:{
+            msg:"你好啊",
+            bok:true,
+            obj:{
+                bg1:true,
+                bg2:false
+            }
+       }
+    })
+</script>
+
+</body>
+</html>

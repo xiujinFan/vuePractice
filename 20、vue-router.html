@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>勿忘初心，方得始终</title>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--3、通过router-link 来添加路由跳转-->
+    <router-link to="/home">home页面</router-link>
+    <router-link to="/list">list页面</router-link>
+    <router-link to="/detail">detail页面</router-link>
+    <!--4、通过router-view -->
+    <router-view></router-view>
+</div>
+<template id="home">
+    <div>
+        <h1>home页面</h1>
+        <router-link to="/home/login">登录</router-link>
+        <router-link to="/home/reg">注册</router-link>
+        <router-view></router-view>
+    </div>
+</template>
+<template id="list">
+    <div>
+        <h1>list页面</h1>
+        <router-link to="/list/news/1">文章1</router-link>
+        <router-link to="/list/news/2">文章2</router-link>
+        <router-view></router-view>
+    </div>
+</template>
+<script>
+    //1、创建router实例，并进行配置
+    var Home={
+        template:'#home'
+    };
+    var List={
+        template:'#list'
+    };
+    var Detail={
+        template:'<h1>detail页面</h1>'
+    };
+    var router=new VueRouter({
+        routes:[
+            {path:'/home',component:Home,
+                children:[
+                    {path:'login',component:{
+            template:"<h2>登录</h2>"
+                    }},
+                    {path:'reg',component:{
+            template:"<h2>注册</h2>"
+                    }}
+                ]
+            },
+            {path:'/list',component:List,
+            children:[
+                {path:"news/:id",component:{
+                    template:"<h2>文章{{$route.params.id}}</h2>"
+                }}
+            ]},
+            {path:'/detail',component:Detail}
+        ]
+    });
+    //2、把配置好的router，放入app实例中
+    var app=new Vue({
+        router,//把配置好的router，放入APP实例中
+        el:"#app"
+    })
+</script>
+</body>
+</html>

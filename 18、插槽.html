@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>勿忘初心，方得始终</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <hello>
+        你好
+         <div slot="div1">11111111</div>
+         <div slot="div2">3333333333</div><!--有名插槽-->
+    </hello>
+</div>
+<template id="temp1">
+    <h1>nihao a <slot></slot><slot name="div2"></slot><slot name="div1"></slot></h1> <!--<slot></slot> 无名插槽-->
+</template>
+<script>
+    var app=new  Vue({
+        el:"#app",
+        components:{
+            hello:{
+                template:"#temp1"
+            }
+        }
+    })
+</script>
+</body>
+</html>

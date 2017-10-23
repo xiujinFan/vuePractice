@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>勿忘初心，方得始终</title>
+    <script src="js/vue.js"></script>
+    <style>
+        [v-cloak]{display: none}
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1 v-cloak>{{msg}}</h1>
+    <h2>{{n*m}}</h2>
+    <h3>{{total}}</h3>
+</div>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            msg:"hello",
+            n:20,
+            m:30
+        },
+        computed:{
+            //虽然这里放的是函数，但是，可以把total当作变量来使用
+            /*total(){ //只是得到计算后的结果
+                return this.n*this.m
+            }*/
+            total:{
+                get:function () {
+                    return this.n*this.m
+                },
+                set:function (newValue) {
+                    alert(newValue);
+                    this.n=Math.round(newValue/this.m)
+                }
+            }
+
+        }
+    })
+</script>
+</body>
+</html>

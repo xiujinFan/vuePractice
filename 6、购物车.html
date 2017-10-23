@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <script src="js/vue.js"></script>
+    <style>
+        ul{}
+        ul li{list-style: none;height: 30px;line-height: 30px;font-size: 12px;border-bottom: 1px solid olivedrab}
+        ul li span{
+            display: inline-block;width: 60px;text-align: center;
+        }
+        .del{margin-left: 240px;color: red;font-size: 14px;}
+        .formAdd{margin:10px;}
+    </style>
+</head>
+<body>
+ <div id="buyCar">
+     <ul>
+         <li><span>商品名称</span><span>数量</span><span>价格</span><span @click="select_all">全选</span><span>操作</span></li>
+         <li v-for="(item,index) in goods"><span>{{item.name}}</span><span>{{item.number}}</span><span>{{item.price}}</span><span><input
+                 type="checkbox"></span><span @click="delOne(index)">删除</span></li>
+         <li v-show="goods.length?true:false"><span class="del" @click="delAll">全部删除</span></li>
+     </ul>
+     <form action="">
+         <div class="formAdd">
+             <label for="name"></label>
+             <input type="text" id="name" placeholder="添加商品名称" v-model="name">
+         </div>
+         <div class="formAdd">
+             <label for="price"></label>
+             <input type="text" id="price" placeholder="添加商品价格" v-model="price">
+         </div>
+         <div class="formAdd">
+             <button type="button" @click="addData">添加</button>
+             <button type="button" @click="resetData">重置</button>
+         </div>
+     </form>
+ </div>
+ <script>
+     var app=new Vue({
+         el:"#buyCar",
+         data:{
+             name:"",
+             price:"",
+             goods:[
+                 {
+                     name:"电视机",
+                     number:"1",
+                     price:"3600"
+
+                 },
+                 {
+                     name:"空调",
+                     number:"2",
+                     price:"2800"
+
+                 }
+             ],
+
+         },
+         methods:{
+             select_all() {
+
+             },
+             delOne(index){
+                 this.goods.splice(index,1)
+             },
+             delAll(){
+                 this.goods=[]
+             },
+             addData(){
+                 this.goods.push({
+                     name:this.name,
+                     price:this.price
+                 });
+                 this.name="";
+                 this.price="";
+             },
+             resetData(){
+                 this.name="";
+                 this.price="";
+             }
+         }
+     })
+ </script>
+</body>
+</html>

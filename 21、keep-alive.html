@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    vue2.0 提供了keep-alive组件
+   1、 用来缓存组件、避免多次加载相同的组件，减少性能消耗
+    
+    <keep-alive>
+        <component> 
+              <!-- 组件将被缓存 -->
+        </component>
+    </keep-alive>
+    
+    2、如果需要缓存整个站点的所有页面
+     
+     <keep-alive>
+         <router-view></router-view>
+     </keep-alive>
+     
+     将首次触发请求写在   created  钩子函数中，就能实现缓存，比如列表页去了详情页，回来还是在原来的页面
+   
+   3、缓存部分页面或者组件
+   1） 使用router.meta属性
+         <keep-alive>
+              <router-view v-if="!$route.meta.notKeepAlive"></router-view>
+         </keep-alive>
+         <router-view  v-if="$route.meta.notKeepAlive"></router-view>
+         
+         router 设置
+         ```
+           routes:[
+               {
+                   path: '/',
+                   redirect: '/index',
+                   component: Index,
+                   meta: {keepAlive: true}
+                 
+                 },
+                 {
+                 path: '/common',
+                 component: TestParent,
+                 children: [
+                    {
+                       path: '/test2',
+                       component: Test2,
+                       meta: {} keepAlive:true
+                    }
+                 ]
+                 }
+           ]
+         ```      
+         // 表示index和test2都使用keep-alive
+         (2) 使用新增属性inlcude/exclude
+
+            2.1.0后提供了include/exclude两个属性 可以针对性缓存相应的组件
+
+             <!-- comma-delimited string -->
+                <keep-alive include="a,b">
+                          <component :is="view"></component>
+                </keep-alive>
+             <!-- regex (use v-bind) -->
+                <keep-alive :include="/a|b/">
+                          <component :is="view"></component>
+                </keep-alive>
+
+               //其中a,b是组件的name
+               注意:这种方法都是预先知道组件的名称的
+               
+               (2)动态判断
+
+                <keep-alive :include="includedComponents">
+                      <router-view></router-view>
+                </keep-alive>
+                  includedComponents动态设置即可
+</div>
+
+</body>
+</html>
